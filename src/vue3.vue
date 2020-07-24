@@ -34,6 +34,7 @@ export default {
       });
       return { competition, _showMoreCompet, _switchCurrentMatch };
     };
+
     // 赛程
     let _schedule = () => {
       let schedule = reactive({
@@ -57,6 +58,7 @@ export default {
       };
       return { schedule, _getScheduleList, _switchEventWeek };
     };
+    
     // 进度
     let _process = () => {
       let process = reactive({
@@ -73,7 +75,6 @@ export default {
     let { competition, _showMoreCompet, _switchCurrentMatch } = _competition();
     let { schedule, _getScheduleList, _switchEventWeek } = _schedule();
     let { process, _getEventProcess } = _process();
-
     return {
       // 赛事
       competition,

@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vite App</title>
-</head>
-<body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- proxy基本操作 -->
+    <!-- <div class="proxy-base">
+      <pre>
+        // Proxy接收2个参数，需代理的对象与代理操作对象。
+        // 通过Proxy的拦截，获取对象数据的时候，会首先进入get方法中处理，这里可以改写返回的内容。
+        // 设置属性值的时候，同样会进入set方法中，set方法最终需要返回操作是否成功的标识。
+        let source = { name: "晓筑" };
+        let p = new Proxy(source, {
+          // 改写返回的内容
+          get(target, key) {
+            return target[key]
+            // return key in target ? '老妖精' : false
+          },
+          set(target, key, val) {
+            target[key] = val;
+            return true;
+          },
+        });
+        console.log(p.name)
+        console.log(p.from)
+      </pre>
+      <script>
+        let source = { name: "晓筑" };
+        let p = new Proxy(source, {
+          get(target, key) {
+            return target[key]
+            // return key in target ? '老妖精' : false
+          },
+          set(target, key, val) {
+            target[key] = val;
+            return true;
+          },
+        });
+        console.log(p.name)
+        console.log(p.from)
+      </script>
+    </div> -->
+
+    <!-- proxy实现数据绑定 -->
+    <!-- <div class="proxy-data-bind">
+      <div>
+        <span>更新：</span>
+        <span id="text"></span>
+      </div>
+      <input type="text" id="input" />
+      <script>
+        let text = document.getElementById("text");
+        let input = document.getElementById("input");
+        let targetObj = {
+          value: "",
+        };
+        // 监听输入事件
+        input.addEventListener(
+          "input",
+          function (e) {
+            proxyObj.value = e.target.value;
+          },
+          false
+        );
+        // 定义proxyObj
+        let proxyObj = new Proxy(targetObj, {
+          set(target, key, val) {
+            // 检测第一个参数中的key是不是value
+            if (key === "value") {
+              // 更新
+              target[key] = val;
+              // dom节点更新
+              text.innerHTML = val;
+              input.value = val;
+              return true;
+            } else {
+              return false;
+            }
+          },
+        });
+      </script>
+    </div> -->
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
